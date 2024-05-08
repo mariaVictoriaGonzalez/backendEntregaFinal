@@ -24,7 +24,7 @@ export const loginUser = async (req, res) => {
       name: `${user.first_name} ${user.last_name}`,
       email: user.email,
       role: user.role,
-      _id: user._id
+      _id: user._id,
     };
     const access_token = generateJWToken(tokenUser);
     console.log(access_token);
@@ -68,7 +68,7 @@ export const githubLogin = async (req, res) => {
     name: `${user.first_name} ${user.last_name}`,
     email: user.email,
     role: user.role,
-    _id: user._id
+    _id: user._id,
   };
   const access_token = generateJWToken(tokenUser);
   console.log(access_token);
@@ -106,7 +106,7 @@ export const mailDeModificarPass = async (req, res) => {
   const email = req.body.email;
 
   const changePassToken = generateJWToken(email);
-  console.log(changePassToken)
+  console.log(changePassToken);
 
   res.cookie("jwtCookieToken", changePassToken, {
     maxAge: 100000,
@@ -133,7 +133,6 @@ export const mailDeModificarPass = async (req, res) => {
     }
   });
 
-
   const mailOptions = {
     from: "Coder ecommerce - " + config.gmailAccount,
     to: email,
@@ -145,7 +144,6 @@ export const mailDeModificarPass = async (req, res) => {
     const info = await transporter.sendMail(mailOptions);
     console.log("Message sent: %s", info.messageId);
     res.redirect("/api/users/login");
-
   } catch (error) {
     console.error("Error:", error);
     res.status(500).send("Error interno del servidor");
@@ -154,7 +152,7 @@ export const mailDeModificarPass = async (req, res) => {
 
 export const cambioDePass = async (req, res) => {
   const { password, confirmPassword } = req.body;
-  
+
   try {
     // Verificar si la contraseña y la confirmación coinciden
     if (password !== confirmPassword) {
@@ -171,7 +169,7 @@ export const cambioDePass = async (req, res) => {
 
     // Extraer el email del token decodificado
     const userEmail = modifiedUser.user;
-    console.log(userEmail)
+    console.log(userEmail);
 
     // Buscar el usuario en la base de datos por el email
     const user = await usersService.getUserByEmail(userEmail);
@@ -186,9 +184,7 @@ export const cambioDePass = async (req, res) => {
     await user.save();
 
     // Redirigir al usuario después de actualizar la contraseña
-    res
-      .status(200)
-      .redirect("/api/users/login")
+    res.status(200).redirect("/api/users/login");
   } catch (error) {
     console.error(error);
     res.status(500).json({ errorMessage: "Error interno del servidor." });
@@ -219,8 +215,7 @@ export const renderChangeToPremium = async (req, res) => {
   res.render("isitpremium", {
     title: "Premium",
   });
-
-}
+};
 
 export const changeToPremium = async (req, res) => {
   try {
@@ -229,7 +224,9 @@ export const changeToPremium = async (req, res) => {
     const file = req.file;
 
     if (!file) {
-      return res.status(400).send({ status: "error", message: "No se adjuntó ningún archivo." });
+      return res
+        .status(400)
+        .send({ status: "error", message: "No se adjuntó ningún archivo." });
     }
 
     // Lógica para actualizar el usuario con la imagen subida
@@ -240,7 +237,11 @@ export const changeToPremium = async (req, res) => {
 
     // Verifica si el usuario ha subido las tres imágenes requeridas
     const imageCount = await usersService.getUserImageCount(uid);
-    if (imageCount.profile >= 1 && imageCount.products >= 1 && imageCount.documents >= 1) {
+    if (
+      imageCount.profile >= 1 &&
+      imageCount.products >= 1 &&
+      imageCount.documents >= 1
+    ) {
       // Cambiar el rol del usuario a "premium"
       await usersService.updateUserStatus(uid);
 
@@ -255,3 +256,34 @@ export const changeToPremium = async (req, res) => {
     return res.status(500).json({ message: "Error interno del servidor" });
   }
 };
+
+export const getAllUsers = async (req, res) => {
+  try {
+      // Aquí asumo que tienes un modelo de usuario llamado "User"
+      const users = await usersService.getAllUsers();
+
+      // Renderiza la plantilla 'users' y pasa los datos de los usuarios
+      res.render('usersList', { users });
+  } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ message: "Error interno del servidor" });
+  }
+};
+
+export const deleteInactiveUsers = async (req, res) => {
+  try {
+    // Calcula la fecha actual menos dos días
+    const twoDaysAgo = new Date();
+    twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+
+    // Encuentra los usuarios inactivos por dos días
+    const inactiveUsers = await User.find({ lastActivity: { $lt: twoDaysAgo } });
+
+    // Elimina los usuarios encontrados
+    await User.deleteMany({ _id: { $in: inactiveUsers.map(user => user._id) } });
+
+    res.status(200).json({ message: "Usuarios inactivos eliminados con éxito." });
+} catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: "Error interno del servidor" });
+}};

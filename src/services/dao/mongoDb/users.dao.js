@@ -71,4 +71,15 @@ export default class UsersServiceDao {
       return error;
     }
   }
+
+  async getAllUsers() {
+    try {
+      const users = await userModel.find();
+
+      return users;
+    } catch (error) {
+      console.error("Error:", error);
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  }
 }
