@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAllUsers } from "../controllers/sessions.controller.js";
+import { deleteInactiveUsers, getAllUsers } from "../controllers/sessions.controller.js";
 
 const router = Router();
 
@@ -21,7 +21,7 @@ router.get("/:uid", (req, res) => {
 
 router.get("/", getAllUsers)
 
-router.delete("/inactive", )
+router.delete("/inactive", deleteInactiveUsers)
 
 router.delete("/:uid", )
 
