@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { deleteInactiveUsers, getAllUsers } from "../controllers/sessions.controller.js";
+import { authorization } from "../utils.js";
 
 const router = Router();
 
@@ -11,7 +12,7 @@ router.get("/register", (req, res) => {
   res.render("register");
 });
 
-router.get("/premium/:uid", (req, res) => {
+router.get("/premium/:uid",  (req, res) => {
   res.render("isItPremium")
 })
 
@@ -19,9 +20,9 @@ router.get("/:uid", (req, res) => {
   res.render("isItPremium")
 })
 
-router.get("/", getAllUsers)
+router.get("/",passportCall("jwt"), authorization("admin"), getAllUsers)
 
-router.delete("/inactive", deleteInactiveUsers)
+router.delete("/inactive",passportCall("jwt"), authorization("admin"), deleteInactiveUsers)
 
 router.delete("/:uid", )
 

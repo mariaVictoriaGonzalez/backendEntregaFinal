@@ -55,6 +55,9 @@ const initializePassport = () => {
             password: createHash(password),
           };
 
+          if(!user.role){
+            user.role = "user"
+          }
           // Asignar el rol "admin" solo si las credenciales coinciden
           if (
             user.email === "adminCoder@coder.com" &&

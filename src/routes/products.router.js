@@ -4,7 +4,7 @@ import { getAllPRoducts, getProductById, createProduct, deleteProduct, modifyPro
 
 const router = Router();
 
-router.get("/", passportCall("jwt"), authorization("user"), getAllPRoducts);
+router.get("/", passportCall("jwt"), authorization("user", "admin", "premium"), getAllPRoducts);
 
 router.get("/:id", getProductById);
 

@@ -11,15 +11,13 @@ const schema = new mongoose.Schema({
   },
   password: String,
   role: {
-    type: {
-      default: "user",
-      type: String,
-      enum: ["user", "admin", "premium"],
-    },
+    default: "user",
+    type: String,
+    enum: ["user", "admin", "premium"],
   },
   loggedBy: String,
   documents: [{ name: String, reference: String }],
-  last_conection: Date
+  last_conection: Date,
 });
 
 const userModel = mongoose.model(collection, schema);
