@@ -47,8 +47,8 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/sessions/login", (request, response) => {
-  
+app.get("/", (request, response) => {
+  response.redirect("/api/sessions/login");
 });
 
 app.use(cookieParser(config.privateKey));
