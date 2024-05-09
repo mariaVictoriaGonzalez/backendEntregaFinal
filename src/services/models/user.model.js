@@ -12,9 +12,9 @@ const schema = new mongoose.Schema({
   password: String,
   role: {
     type: {
+      default: "user",
       type: String,
       enum: ["user", "admin", "premium"],
-      default: "user"
     },
   },
   loggedBy: String,

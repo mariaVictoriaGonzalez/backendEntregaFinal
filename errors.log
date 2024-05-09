@@ -229,3 +229,13 @@
 {"level":"error","message":"GET en /users/login - at 9/5/2024 - 00:16:53"}
 {"level":"error","message":"GET en /api/users/login - at 9/5/2024 - 00:17:00"}
 {"level":"error","message":"GET en /js/login.js - at 9/5/2024 - 00:17:00"}
+{"level":"error","message":"GET en /api/users/login - at 9/5/2024 - 19:16:45"}
+{"level":"error","message":"GET en /js/login.js - at 9/5/2024 - 19:16:45"}
+{"level":"error","message":"GET en /favicon.ico - at 9/5/2024 - 19:16:46"}
+{"level":"error","message":"GET en /api/users/register - at 9/5/2024 - 19:16:50"}
+{"level":"error","message":"GET en /js/register.js - at 9/5/2024 - 19:16:50"}
+{"level":"error","message":"POST en /api/sessions/register - at 9/5/2024 - 19:17:20"}
+{"level":"error","message":"GET en /api/users/login - at 9/5/2024 - 19:17:21"}
+{"level":"error","message":"GET en /js/login.js - at 9/5/2024 - 19:17:21"}
+{"level":"error","message":"POST en /api/sessions/login - at 9/5/2024 - 19:17:33"}
+{"level":"error","message":"GET en /api/products - at 9/5/2024 - 19:17:36"}
