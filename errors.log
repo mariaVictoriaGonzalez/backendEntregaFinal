@@ -217,3 +217,15 @@
 {"level":"error","message":"GET en /api/sessions/profile - at 7/5/2024 - 21:34:06"}
 {"level":"error","message":"GET en /api/sessions/changetopremium - at 7/5/2024 - 21:34:08"}
 {"level":"error","message":"GET en /api/sessions/changetopremium - at 7/5/2024 - 21:35:30"}
+{"level":"error","message":"GET en /api/users/login - at 9/5/2024 - 00:15:58"}
+{"level":"error","message":"GET en /js/login.js - at 9/5/2024 - 00:15:58"}
+{"level":"error","message":"GET en /favicon.ico - at 9/5/2024 - 00:15:58"}
+{"level":"error","message":"GET en /users/login - at 9/5/2024 - 00:16:05"}
+{"level":"error","message":"GET en /users/login - at 9/5/2024 - 00:16:12"}
+{"level":"error","message":"GET en /users/login - at 9/5/2024 - 00:16:19"}
+{"level":"error","message":"GET en /api/users/login - at 9/5/2024 - 00:16:26"}
+{"level":"error","message":"GET en /js/login.js - at 9/5/2024 - 00:16:26"}
+{"level":"error","message":"GET en /users/login - at 9/5/2024 - 00:16:51"}
+{"level":"error","message":"GET en /users/login - at 9/5/2024 - 00:16:53"}
+{"level":"error","message":"GET en /api/users/login - at 9/5/2024 - 00:17:00"}
+{"level":"error","message":"GET en /js/login.js - at 9/5/2024 - 00:17:00"}

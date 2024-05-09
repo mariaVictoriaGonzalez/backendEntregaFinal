@@ -48,7 +48,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (request, response) => {
-  response.redirect("/users/login");
+  response.redirect("/api/users/login");
 });
 
 app.use(cookieParser(config.privateKey));
