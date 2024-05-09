@@ -47,8 +47,8 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (request, response) => {
-  response.send("<h1> Bienvenidos al servidor.</h1>");
+app.get("/sessions/login", (request, response) => {
+  
 });
 
 app.use(cookieParser(config.privateKey));
