@@ -14,6 +14,7 @@ const schema = new mongoose.Schema({
     type: {
       type: String,
       enum: ["user", "admin", "premium"],
+      default: "user"
     },
   },
   loggedBy: String,
