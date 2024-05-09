@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { deleteInactiveUsers, getAllUsers } from "../controllers/sessions.controller.js";
-import { authorization } from "../utils.js";
+import { authorization, passportCall } from "../utils.js";
 
 const router = Router();
 
